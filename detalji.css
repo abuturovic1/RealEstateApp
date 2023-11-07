@@ -1,0 +1,55 @@
+#detalji {
+    /*margin-bottom: 20px;*/
+    margin-left: 50px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    width: 65%;
+}
+
+#osnovno {
+    margin-bottom: 20px;
+    margin-left: 50px;
+
+}
+
+#osnovno img {
+    width: 750px;
+}
+
+
+#upiti {
+    text-align: left;
+    float: left;
+    width: 800px;
+}
+
+h3 {
+    margin-left: 50px;
+
+}
+
+#opis {
+    width: 150%;
+    margin-top: 20px;
+}
+
+#upiti li {
+    border: 1px solid black;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: white;
+    clear: both;
+    margin-top: 20px;
+
+}
+
+body {
+    background-color: #fdf1d3;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 10px;
+}

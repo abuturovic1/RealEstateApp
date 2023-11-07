@@ -1,0 +1,35 @@
+body {
+    background-color: #fdf1d3;
+
+
+}
+
+#meni li {
+    display: inline;
+    padding: 10px;
+
+
+}
+
+#meni {
+    display: flex;
+    justify-content: center;
+    background-color: #fdf1d3;
+    position: fixed;
+    width: 100%;
+    top: 0;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff9900;
+}
+
+/*ul{
+    position: fixed;
+   
+}*/

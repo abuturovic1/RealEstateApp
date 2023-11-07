@@ -1,0 +1,56 @@
+body {
+    background-color: #fdf1d3;
+   
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+#stan .nekretnina {
+    background-color: white;
+
+}
+
+.nekretnina {
+    padding: 10px;
+}
+
+.desno {
+    float: right;
+    margin-top: -50px;
+}
+
+#kuca .nekretnina {
+    background-color: powderblue;
+}
+
+#pp .nekretnina {
+    background-color: green;
+}
+
+.nekretnina img {
+    width: 100%;
+    height: 300px;
+}
+
+button {
+    background-color: white;
+    color: black;
+    border: 2px solid lightcoral;
+
+}
+
+button:hover {
+    background-color: lightcoral;
+    color: white;
+}
+
+.dugme {
+    display: flex;
+    justify-content: center;
+    margin: 0 50%;
+}
