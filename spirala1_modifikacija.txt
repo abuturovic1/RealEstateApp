@@ -1,0 +1,9 @@
+Modifikovani su sljedeći dokumenti:
+
+1. detalji.html je modificiran - dodan je atribut alt za img element.
+2. profil.html:
+ - dodan atribut alt za img element.
+ - dodan jedan div element sa ciji je id 'group' u kojem se nalaze forma i slika.
+ 3. profil.css
+ - dodano @media (min-width: 500px) i float:left za sliku.
+
