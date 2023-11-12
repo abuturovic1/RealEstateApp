@@ -1,0 +1,18 @@
+Validator koji sam koristila za sve html datoteke je W3c validator na stranici The W3C Markup Validation Service.
+Validator koji sam koristila za sve css datoteke je The W3C CSS Validation Service - Jigsaw.
+Imala sam 2 greške tj. 2 errora u html dokumentu detalji i html dokumentu profil.
+
+-meni
+-> html: Warning : Consider adding a lang attribute to the html start tag to declare the language of this document.
+-> css: Congratulations! No Error Found.
+-nekretnine
+-> html: Warning: Consider adding a lang attribute to the html start tag to declare the language of this document.
+-> css: Congratulations! No Error Found.
+-detalji
+-> html: Warning: Consider adding a lang attribute to the html start tag to declare the language of this document. Error: An img element must have an alt attribute, except under certain conditions.
+-> css: Congratulations! No Error Found.
+-profil
+-> html: Warning: Consider adding a lang attribute to the html start tag to declare the language of this document. Error: An img element must have an alt attribute, except under certain conditions.
+-> css: Congratulations! No Error Found.
+-prijava
+-> html: Warning: Consider adding a lang attribute to the html start tag to declare the language of this document.
