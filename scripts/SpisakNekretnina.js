@@ -19,14 +19,11 @@ let SpisakNekretnina = function () {
 
     for (let i = 0; i < listaNekretnina.length; i++) {
       let nekretnina = listaNekretnina[i];
-
-
+      
       let ispunjeno = true;
 
       if (kriterij.tip_nekretnine && nekretnina.tip_nekretnine !== kriterij.tip_nekretnine) {
         ispunjeno = false;
-
-
       }
 
       if (kriterij.min_kvadratura && nekretnina.kvadratura < kriterij.min_kvadratura) {
@@ -35,18 +32,12 @@ let SpisakNekretnina = function () {
       }
       if (kriterij.max_kvadratura && nekretnina.kvadratura > kriterij.max_kvadratura) {
         ispunjeno = false;
-
-
       }
       if (nekretnina.cijena < kriterij.min_cijena) {
         ispunjeno = false;
-
-
       }
       if (nekretnina.cijena > kriterij.max_cijena) {
         ispunjeno = false;
-
-
       }
 
       if (ispunjeno) filtriraneNekretnine.push(nekretnina);

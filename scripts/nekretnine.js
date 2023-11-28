@@ -1,16 +1,14 @@
 function spojiNekretnine(divReferenca, instancaModula, tip_nekretnine) {
 
-  const filtriraneNekretnine = instancaModula.filtrirajNekretnine({tip_nekretnine: tip_nekretnine});
-
-
+  const filtriraneNekretnine = instancaModula.filtrirajNekretnine({tip_nekretnine:tip_nekretnine});
+  
   let gridDiv = document.createElement("div");
   gridDiv.className = "grid_container";
-
-
   for (let i = 0; i < filtriraneNekretnine.length; i++) {
     
     let nekretnina = filtriraneNekretnine[i];
-
+    // Provjeravam tip nekretnine da bi osigurala da se nekretnine upisuju samo ako zadovoljavaju uslove tipa nekretnine
+    if(tip_nekretnine && nekretnina.tip_nekretnine != tip_nekretnine) continue; 
     let nekretninaItemDiv = document.createElement("div");
     nekretninaItemDiv.className = "nekretnina";
     let desnoDiv = document.createElement("div");
