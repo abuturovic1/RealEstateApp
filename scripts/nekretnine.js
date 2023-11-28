@@ -1,14 +1,24 @@
 function spojiNekretnine(divReferenca, instancaModula, tip_nekretnine) {
 
-  const filtriraneNekretnine = instancaModula.filtrirajNekretnine({tip_nekretnine:tip_nekretnine});
-  
+  const filtriraneNekretnine = instancaModula.filtrirajNekretnine({ tip_nekretnine: tip_nekretnine });
+
+  //na ovaj nacin dinamicki dodajem naslov u div sa id-em stan, kuca i poslovni prostor respektivno
+  if (divReferenca.id === "stan") {
+    divReferenca.innerHTML = `<h2>Stan</h2>`;
+  }
+  else if (divReferenca.id === "kuca") {
+    divReferenca.innerHTML = `<h2>Kuća</h2>`;
+  }
+  else if (divReferenca.id === "pp") {
+    divReferenca.innerHTML = `<h2>Poslovni prostor</h2>`;
+  }
   let gridDiv = document.createElement("div");
   gridDiv.className = "grid_container";
   for (let i = 0; i < filtriraneNekretnine.length; i++) {
-    
+
     let nekretnina = filtriraneNekretnine[i];
     // Provjeravam tip nekretnine da bi osigurala da se nekretnine upisuju samo ako zadovoljavaju uslove tipa nekretnine
-    if(tip_nekretnine && nekretnina.tip_nekretnine != tip_nekretnine) continue; 
+    if (tip_nekretnine && nekretnina.tip_nekretnine != tip_nekretnine) continue;
     let nekretninaItemDiv = document.createElement("div");
     nekretninaItemDiv.className = "nekretnina";
     let desnoDiv = document.createElement("div");
@@ -31,6 +41,8 @@ function spojiNekretnine(divReferenca, instancaModula, tip_nekretnine) {
     nekretninaItemDiv.appendChild(dugmeDiv);
     gridDiv.appendChild(nekretninaItemDiv);
   }
+
+
   divReferenca.appendChild(gridDiv);
   gridDiv.style.display = "grid";  //dinamicki sam dodala style za grid, ne prepoznaje css?
   gridDiv.style.gridTemplateColumns = "repeat(auto-fit,minmax(300px,1fr))";
