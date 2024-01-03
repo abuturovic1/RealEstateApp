@@ -19,7 +19,7 @@ app.use(
 
 const publicPath = path.join(__dirname, 'public');
 
-// app.use(express.static(publicPath));
+
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, 'public/html')));
@@ -30,19 +30,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-  //   const defaultPage = 'meni';
-  //   // console.log(req);
-  //   const filePath = path.join(publicPath, 'html', `${defaultPage}.html`);
+
 
   res.sendFile(path.join(__dirname + '/public/html/meni.html'));
 
-  //   fs.access(filePath, fs.constants.F_OK, err => {
-  //     if (err) {
-  //       res.status(404).send('Not Found');
-  //     } else {
-  //       res.sendFile(filePath);
-  //     }
-  //   });
+
 });
 
 app.post('/login', (req, res) => {
