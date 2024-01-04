@@ -51,7 +51,7 @@ app.post('/login', (req, res) => {
                 if (result) {
                   req.session.loggedIn = true;
                   req.session.username = username;
-                  res.status(200).json({ poruka: 'Uspješna prijava',  url: "/nekretnine.html" });
+                  res.status(200).json({ poruka: 'Uspješna prijava', url: '/nekretnine.html' });
                 } else {
                   res.status(401).json({ greska: 'Neuspješna prijava' });
                 }
@@ -192,6 +192,11 @@ app.post('/marketing/nekretnina/:id', (req, res) => {
   const { id } = req.params;
   console.log(id);
   res.status(200).send();
+});
+
+app.post('/marketing/osvjezi', (req, res) => {
+  const { nizNekretnina } = req.body;
+  res.status(200).json(nizNekretnina);
 });
 
 app.get('/:page', (req, res) => {

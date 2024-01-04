@@ -1,16 +1,16 @@
 [
   {
-  "id": 1,
-  "ime": "Neko",
-  "prezime": "Nekic",
-  "username": "username1",
-  "password": "$2a$10$OQROcNsTqG0xX7PSqbZxsebd6/doI6ArBk1whBzBUiFA.FvGtxBCS"
+    "id": 1,
+    "ime": "Neko",
+    "prezime": "Nekic",
+    "username": "username1",
+    "password": "$2a$10$t4YxqiFBYfhp1IDMOcOTZO4WQE9IVFZkZZPDfBy9rJXPybJYWWltS"
   },
   {
-  "id": 2,
-  "ime": "Neko2",
-  "prezime": "Nekic2",
-  "username": "username2",
-  "password": "$2a$10$WxD4LSC1jx13zPTrLXraM.ZQbjnooncdMKI0C9OX/1D36jAUk/5WC"
+    "id": 2,
+    "ime": "Neko2",
+    "prezime": "Nekic2",
+    "username": "username2",
+    "password": "$2a$10$Dpc1lmPv284BQTcC3Ves9uEUe.b5B5gF8XoDiGC0cdAl1Rb0lbUIS"
   }
-  ]
+]

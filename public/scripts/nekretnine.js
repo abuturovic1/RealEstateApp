@@ -76,3 +76,7 @@ const nekretnine = (error, data) => {
 };
 
 PoziviAjax.getNekretnine(nekretnine);
+
+const filtrirajNekretnine = () => {
+  MarketingAjax.klikNekretnina(1);
+};
