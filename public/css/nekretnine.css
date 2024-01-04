@@ -1,56 +1,83 @@
 body {
-    background-color: #fdf1d3;
-   
+  background-color: #fdf1d3;
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
 }
 
 #stan .nekretnina {
-    background-color: white;
-
+  background-color: white;
 }
 
 .nekretnina {
-    padding: 10px;
+  padding: 10px;
 }
 
 .desno {
-    float: right;
-    margin-top: -50px;
+  float: right;
+  margin-top: -50px;
 }
 
 #kuca .nekretnina {
-    background-color: powderblue;
+  background-color: powderblue;
 }
 
 #pp .nekretnina {
-    background-color: green;
+  background-color: green;
 }
 
 .nekretnina img {
-    width: 100%;
-    height: 300px;
+  width: 100%;
+  height: 300px;
 }
 
 button {
-    background-color: white;
-    color: black;
-    border: 2px solid lightcoral;
-
+  background-color: white;
+  color: black;
+  border: 2px solid lightcoral;
 }
 
 button:hover {
-    background-color: lightcoral;
-    color: white;
+  background-color: lightcoral;
+  color: white;
+  cursor: pointer;
 }
 
 .dugme {
-    display: flex;
-    justify-content: center;
-    margin: 0 50%;
+  display: flex;
+  justify-content: center;
+  margin: 0 50%;
+}
+
+#pretraga {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 5px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input {
+  padding: 8px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+#pretraga button {
+  background-color: lightcoral;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#pretraga button:hover {
+  background-color: darkred;
 }

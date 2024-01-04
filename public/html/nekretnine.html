@@ -1,37 +1,59 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Nekretnine</title>
-    <link rel="stylesheet" type="text/css" href="../css/nekretnine.css">
-    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="../css/meni.css">
-</head>
+    <link rel="stylesheet" type="text/css" href="../css/nekretnine.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/meni.css" />
+  </head>
 
-<body>
-
-    <div id="meni">
+  <!-- <body onload="nekretnineInit()" id="body"> -->
+  <body>
+    <!-- <div id="meni">
         <ul>
             <li><a href="profil.html">Profil</a></li>
             <li><a href="nekretnine.html">Nekretnine</a></li>
             <li><a href="detalji.html">Detalji</a></li>
             <li><a href="prijava.html">Prijava</a></li>
         </ul>
+    </div> -->
+
+    <div id="meni">
+      <ul>
+        <li id="profilLink" style="display: none"><a href="profil.html">Profil</a></li>
+        <li id="nekretnineLink"><a href="nekretnine.html">Nekretnine</a></li>
+        <li id="detaljiLink"><a href="detalji.html">Detalji</a></li>
+        <li id="odjavaLink" style="display: none"><a href="#" onclick="logout()">Odjava</a></li>
+        <li id="prijavaLink"><a href="prijava.html">Prijava</a></li>
+      </ul>
     </div>
 
+    <div id="pretraga">
+      <label for="minCijena">Min Cijena:</label>
+      <input type="text" id="minCijena" name="minCijena" />
 
-    <br>
+      <label for="maxCijena">Max Cijena:</label>
+      <input type="text" id="maxCijena" name="maxCijena" />
 
-    <div id="stan">
+      <label for="minKvadratura">Min Kvadratura:</label>
+      <input type="text" id="minKvadratura" name="minKvadratura" />
+
+      <label for="maxKvadratura">Max Kvadratura:</label>
+      <input type="text" id="maxKvadratura" name="maxKvadratura" />
+
+      <button onclick="filtrirajNekretnine()">Pretraga</button>
     </div>
 
-    <div id="kuca">
-    </div>
+    <br />
 
-    <div id="pp">
-    </div>
+    <div id="stan"></div>
+
+    <div id="kuca"></div>
+
+    <div id="pp"></div>
+    <!-- <script src="../scripts/poziv.js"></script> -->
+    <script src="../scripts/PoziviAjax.js"></script>
     <script src="../scripts/SpisakNekretnina.js"></script>
     <script src="../scripts/nekretnine.js"></script>
-</body>
-
+  </body>
 </html>

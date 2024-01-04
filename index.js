@@ -19,8 +19,6 @@ app.use(
 
 const publicPath = path.join(__dirname, 'public');
 
-
-
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, 'public/html')));
 app.use(express.static(path.join(__dirname, '/public/css')));
@@ -30,11 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-
-
   res.sendFile(path.join(__dirname + '/public/html/meni.html'));
-
-
 });
 
 app.post('/login', (req, res) => {
@@ -70,7 +64,6 @@ app.post('/login', (req, res) => {
         res.status(401).json({ greska: 'Neuspješna prijava' });
       }
       if (err) {
-        console.log('Error while trying to hash password');
         res.status(401).json({ greska: 'Neuspješna prijava' });
       }
     });
@@ -117,7 +110,7 @@ app.post('/upit', (req, res) => {
 
     const nekretnina = nekretnine.find(nekretnina => nekretnina.id == nekretnina_id);
 
-    const username = 'username2';
+    const username = req.session.username;
 
     const korisnici = require('./data/korisnici.json');
 
@@ -179,6 +172,26 @@ app.get('/nekretnine', (req, res) => {
   let nekretnine = require('./data/nekretnine.json');
 
   res.status(200).json({ nekretnine });
+});
+
+app.get('/isloggedin', function (req, res) {
+  if (req.session.loggedIn == true) {
+    res.send(req.session.loggedIn);
+  } else {
+    res.send(false);
+  }
+});
+
+app.post('/marketing/nekretnine', (req, res) => {
+  const { nizNekretnina } = req.body;
+  console.log(nizNekretnina);
+  res.status(200).send();
+});
+
+app.post('/marketing/nekretnina/:id', (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  res.status(200).send();
 });
 
 app.get('/:page', (req, res) => {

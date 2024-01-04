@@ -14,12 +14,12 @@ let SpisakNekretnina = function () {
       return listaNekretnina;
     }
 
-
     let filtriraneNekretnine = [];
 
-    for (let i = 0; i < listaNekretnina.length; i++) {
-      let nekretnina = listaNekretnina[i];
-      
+    for (let i = 0; i < listaNekretnina.nekretnine.length; i++) {
+      console.log(listaNekretnina.nekretnine);
+      let nekretnina = listaNekretnina.nekretnine[i];
+      console.log(nekretnina);
       let ispunjeno = true;
 
       if (kriterij.tip_nekretnine && nekretnina.tip_nekretnine !== kriterij.tip_nekretnine) {

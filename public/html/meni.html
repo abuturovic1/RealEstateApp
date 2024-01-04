@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<HTML>
+<html>
+  <head>
+    <title>Meni</title>
+    <link rel="stylesheet" type="text/css" href="../css/meni.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
 
-<HEAD>
-    <TITLE>Meni</TITLE>
-    <link rel="stylesheet" type="text/css" href="../css/meni.css">
-    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
-</HEAD>
-
-<BODY>
-    <div id="meni">
+  <body>
+    <!-- <div id="meni">
         <ul>
             <li><a href="html/profil.html">Profil</a></li>
             <li><a href="html/nekretnine.html">Nekretnine</a></li>
             <li><a href="html/detalji.html">Detalji</a></li>
             <li><a href="html/prijava.html">Prijava</a></li>
         </ul>
+    </div> -->
+    <div id="meni">
+      <ul>
+        <li id="profilLink" style="display: none"><a href="profil.html">Profil</a></li>
+        <li id="nekretnineLink"><a href="nekretnine.html">Nekretnine</a></li>
+        <li id="detaljiLink"><a href="detalji.html">Detalji</a></li>
+        <li id="odjavaLink" style="display: none"><a href="#" onclick="logout()">Odjava</a></li>
+        <li id="prijavaLink"><a href="prijava.html">Prijava</a></li>
+      </ul>
     </div>
-</BODY>
-
-</HTML>
+    <script src="../scripts/PoziviAjax.js" type="text/javascript"></script>
+    <script src="../scripts/poziv.js" type="text/javascript"></script>
+  </body>
+</html>
