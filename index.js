@@ -51,7 +51,7 @@ app.post('/login', (req, res) => {
                 if (result) {
                   req.session.loggedIn = true;
                   req.session.username = username;
-                  res.status(200).json({ poruka: 'Uspješna prijava' });
+                  res.status(200).json({ poruka: 'Uspješna prijava',  url: "/nekretnine.html" });
                 } else {
                   res.status(401).json({ greska: 'Neuspješna prijava' });
                 }

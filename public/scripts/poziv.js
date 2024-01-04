@@ -1,43 +1,61 @@
 const login = (error, data) => {
   if (error == null) {
-    setLoggedIn(true);
-    removeForm();
+    let obj = JSON.parse(data);
+    window.localStorage.setItem('loggedIn', 'true');
+    window.location.assign(obj.url);
   }
 };
 
 const logout = (error, data) => {
   if (error == null) {
-    setLoggedIn(false);
+    window.localStorage.removeItem('loggedIn');
+    window.location.assign('/');
   }
 };
 
-const nekretnine = (error, data) => {
-  if (error == null) {
-    let lista_nekretnina = JSON.parse(data);
-    console.log('Tu sam');
-  }
-};
+const isLoggedIn = () => {
+  const loggedIn = window.localStorage.getItem('loggedIn');
+  var dugme = document.getElementById('odjavaLink');
+  var profilLink = document.getElementById('profilLink');
+  var odjavaLink = document.getElementById('odjavaLink');
+  var prijavaLink = document.getElementById('prijavaLink');
 
-// const nekretnineInit = (event) => {
-//   getNekretnine();
-// }
-
-const removeForm = () => {
-  const element = document.getElementById('forma');
-  element.remove();
-};
-
-const setLoggedIn = loggedIn => {
-  if (loggedIn) {
-    document.getElementById('profilLink').style.display = 'inline';
-    document.getElementById('odjavaLink').style.display = 'inline';
-    document.getElementById('prijavaLink').style.display = 'none';
+  if (loggedIn === 'true') {
+    dugme.style.display = 'inline';
+    profilLink.style.display = 'inline';
+    odjavaLink.style.display = 'inline';
+    prijavaLink.style.display = 'none';
   } else {
-    document.getElementById('profilLink').style.display = 'none';
-    document.getElementById('odjavaLink').style.display = 'none';
-    document.getElementById('prijavaLink').style.display = 'inline';
+    dugme.style.display = 'none';
+    profilLink.style.display = 'none';
+    odjavaLink.style.display = 'none';
+    prijavaLink.style.display = 'inline';
   }
 };
+
+// const isLoggedIn = () => {
+//   PoziviAjax.getLoggedIn((error, data) => {
+//     if (error === null) {
+//       const loggedIn = data === 'true';
+//       var dugme = document.getElementById('odjavaLink');
+//       var profilLink = document.getElementById('profilLink');
+//       var odjavaLink = document.getElementById('odjavaLink');
+//       var prijavaLink = document.getElementById('prijavaLink');
+
+//       if (loggedIn) {
+//         dugme.style.display = 'inline';
+//         profilLink.style.display = 'inline';
+//         odjavaLink.style.display = 'inline';
+//         prijavaLink.style.display = 'none';
+//       } else {
+//         dugme.style.display = 'none';
+//         profilLink.style.display = 'none';
+//         odjavaLink.style.display = 'none';
+//         prijavaLink.style.display = 'inline';
+//       }
+//     }
+//   });
+// };
 
 const submitLogin = () => {
   const username = document.getElementById('username').value;
@@ -46,10 +64,8 @@ const submitLogin = () => {
   PoziviAjax.postLogin(username, password, login);
 };
 
-
-const getNekretnine = event => {
-  event.preventDefault();
-
-  PoziviAjax.getNekretnine(nekretnine);
+const postLogout = () => {
+  PoziviAjax.postLogout(logout);
 };
 
+window.onload = isLoggedIn;

@@ -8,7 +8,7 @@
   </head>
 
   <!-- <body onload="nekretnineInit()" id="body"> -->
-  <body>
+  <body onload="isLoggedIn()" id="body">
     <!-- <div id="meni">
         <ul>
             <li><a href="profil.html">Profil</a></li>
@@ -23,7 +23,7 @@
         <li id="profilLink" style="display: none"><a href="profil.html">Profil</a></li>
         <li id="nekretnineLink"><a href="nekretnine.html">Nekretnine</a></li>
         <li id="detaljiLink"><a href="detalji.html">Detalji</a></li>
-        <li id="odjavaLink" style="display: none"><a href="#" onclick="logout()">Odjava</a></li>
+        <button id="odjavaLink"  onclick="logout()" style="display: none"><a href="#">Odjava</a></button>
         <li id="prijavaLink"><a href="prijava.html">Prijava</a></li>
       </ul>
     </div>
@@ -51,7 +51,7 @@
     <div id="kuca"></div>
 
     <div id="pp"></div>
-    <!-- <script src="../scripts/poziv.js"></script> -->
+    <script src="../scripts/poziv.js"></script>
     <script src="../scripts/PoziviAjax.js"></script>
     <script src="../scripts/SpisakNekretnina.js"></script>
     <script src="../scripts/nekretnine.js"></script>

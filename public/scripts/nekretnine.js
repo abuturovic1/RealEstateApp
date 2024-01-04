@@ -1,6 +1,5 @@
 function spojiNekretnine(divReferenca, instancaModula, tip_nekretnine) {
   const filtriraneNekretnine = instancaModula.filtrirajNekretnine({ tip_nekretnine: tip_nekretnine });
-  console.log(filtriraneNekretnine, instancaModula);
   //na ovaj nacin dinamicki dodajem naslov u div sa id-em stan, kuca i poslovni prostor respektivno
   if (divReferenca.id === 'stan') {
     divReferenca.innerHTML = `<h2>Stan</h2>`;
