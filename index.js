@@ -266,8 +266,8 @@ app.put('/korisnik', async (req, res) => {
         }
       });
     }
-      await korisnik.save();
-      res.status(200).json({ poruka: 'Podaci su uspješno ažurirani' });
+    await korisnik.save();
+    res.status(200).json({ poruka: 'Podaci su uspješno ažurirani' });
 
   } else {
     res.status(401).json({ greska: 'Neautorizovan pristup' });
@@ -277,8 +277,23 @@ app.put('/korisnik', async (req, res) => {
 app.get('/nekretnine', async (req, res) => {
   const sveNekretnine = await Nekretnina.findAll();
   const nekretnine = sveNekretnine.map(({ dataValues }) => dataValues);
-  res.status(200).send({ nekretnine });
+  res.status(200).json({ nekretnine });
 });
+
+app.get('/nekretnina/:id', async (req, res) => {
+  const id = req.params.id;
+
+  const nekretnine = await Nekretnina.findAll();
+
+  const nekretnina = nekretnine.find(nekretnina => nekretnina.id == id);
+
+  if (!nekretnina) {
+    return res.status(400).json({ greska: `Nekretnina sa id-em ${id} ne postoji` });
+  }
+
+  res.status(200).json({ nekretnina });
+
+})
 
 app.get('/isloggedin', function (req, res) {
   if (req.session.loggedIn == true) {
