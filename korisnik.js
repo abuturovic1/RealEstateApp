@@ -12,7 +12,7 @@ const sequelize = new Sequelize(
 );
 module.exports = function (sequelize) {
     const Korisnik = sequelize.define("Korisnik", {
-        korisnikId: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true

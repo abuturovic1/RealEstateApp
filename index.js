@@ -29,40 +29,39 @@ const Upit = require("./upit.js")(sequelize);
 
 Korisnik.hasMany(Upit, { //korisnik moze imati vise upita
   foreignKey: {
-    name: "korisnikId",
-    field: "korisnikId",
+    name: "korisnik_id",
+    field: "korisnik_id",
     allowNull: false
   }
 
 });
 Upit.belongsTo(Korisnik, { //model upit pripada modelu korisnik
   foreignKey: {
-    name: "korisnikId",
-    field: "korisnikId",
+    name: "korisnik_id",
+    field: "korisnik_id",
     allowNull: false
   }
 });
 Nekretnina.hasMany(Upit, { //nekretnina ima vise upita
   foreignKey: {
-    name: "id",
-    field: "id",
+    name: "nekretnina_id",
+    field: "nekretnina_id",
     allowNull: false
   }
   //'upiti'
 });
 Upit.belongsTo(Nekretnina, { //upit pripada nekretnini
   foreignKey: {
-    name: "id",
-    field: "id",
+    name: "nekretnina_id",
+    field: "nekretnina_id",
     allowNull: false
   }
 });
 sequelize.sync({ force: true }).then(async () => {
-  console.log('Table created successfully!');
+   console.log('Table created successfully!');
 
   try {
     const korisnik1 = await Korisnik.create({
-      // korisnikId: 1,
       ime: 'Neko',
       prezime: 'Nekic',
       username: 'username1',
@@ -71,7 +70,6 @@ sequelize.sync({ force: true }).then(async () => {
     console.log('Inserted data for username1');
 
     const korisnik2 = await Korisnik.create({
-      // korisnikId: 2,
       ime: 'Neko2',
       prezime: 'Nekic2',
       username: 'username2',
@@ -80,7 +78,6 @@ sequelize.sync({ force: true }).then(async () => {
     console.log('Inserted data for username2');
 
     const nekretnina1 = await Nekretnina.create({
-      // nekretninaId: 1,
       tip_nekretnine: 'Stan',
       naziv: 'Useljiv stan Sarajevo',
       kvadratura: 58,
@@ -91,10 +88,9 @@ sequelize.sync({ force: true }).then(async () => {
       datum_objave: '01.10.2023.',
       opis: 'Sociis natoque penatibus.',
     });
-    console.log('Inserted data for Nekretnina sa id 1');
+     console.log('Inserted data for Nekretnina with id 1');
 
     const nekretnina2 = await Nekretnina.create({
-      // nekretninaId: 2,
       tip_nekretnine: 'Poslovni prostor',
       naziv: 'Mali poslovni prostor',
       kvadratura: 20,
@@ -105,29 +101,26 @@ sequelize.sync({ force: true }).then(async () => {
       datum_objave: '20.08.2023.',
       opis: 'Magnis dis parturient montes',
     });
-    console.log('Inserted data for Nekretnina sa id 2');
+    console.log('Inserted data for Nekretnina with id 2');
 
     await Upit.create({
-      // upitId: 1,
-      tekstUpita: 'Nullam eu pede mollis pretium.',
-      korisnikId: korisnik1.korisnikId,
-      id: nekretnina1.id,
+      tekst_upita: 'Nullam eu pede mollis pretium.',
+      korisnik_id: korisnik1.id,
+      nekretnina_id: nekretnina1.id,
     });
     console.log('Inserted data for Upit (korisnikId: 1, nekretninaId: 1)');
 
     await Upit.create({
-      // upitId: 2,
-      tekstUpita: 'Phasellus viverra nulla.',
-      korisnikId: korisnik2.korisnikId,
-      id: nekretnina1.id,
+      tekst_upita: 'Phasellus viverra nulla.',
+      korisnik_id: korisnik2.id,
+      nekretnina_id: nekretnina1.id,
     });
     console.log('Inserted data for Upit (korisnikId: 2, nekretninaId: 1)');
 
     await Upit.create({
-      // upitId: 3,
-      tekstUpita: 'Integer tincidunt.',
-      korisnikId: korisnik2.korisnikId,
-      id: nekretnina2.id,
+      tekst_upita: 'Integer tincidunt.',
+      korisnik_id: korisnik2.id,
+      nekretnina_id: nekretnina2.id,
     });
     console.log('Inserted data for Upit (korisnikId: 2, nekretninaId: 2)');
   } catch (error) {
@@ -143,8 +136,6 @@ app.use(
   })
 );
 
-// const publicPath = path.join(__dirname, 'public');
-
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, 'public/html')));
 app.use(express.static(path.join(__dirname, '/public/css')));
@@ -157,44 +148,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/html/meni.html'));
 });
 
-// app.post('/login', (req, res) => {
-//   if (!req.body || !req.body.username || !req.body.password) {
-//     res.status(401).json({ greska: 'Neuspješna prijava' });
-//   } else {
-//     bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-//       const { username, password } = req.body;
-//       let korisnici = require('./data/korisnici.json');
-//       let prijava = false;
-
-//       if (hash) {
-//         for (let i = 0; i < korisnici.length; i++) {
-//           if (korisnici[i].username === username) {
-//             prijava = true;
-//             bcrypt.compare(password, korisnici[i].password, (err, result) => {
-//               if (err) {
-//                 res.status(401).json({ greska: 'Neuspješna prijava' });
-//               } else {
-//                 if (result) {
-//                   req.session.loggedIn = true;
-//                   req.session.username = username;
-//                   res.status(200).json({ poruka: 'Uspješna prijava', url: '/nekretnine.html' });
-//                 } else {
-//                   res.status(401).json({ greska: 'Neuspješna prijava' });
-//                 }
-//               }
-//             });
-//           }
-//         }
-//       }
-//       if (!prijava) {
-//         res.status(401).json({ greska: 'Neuspješna prijava' });
-//       }
-//       if (err) {
-//         res.status(401).json({ greska: 'Neuspješna prijava' });
-//       }
-//     });
-//   }
-// });
 app.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -225,7 +178,7 @@ app.post('/login', async (req, res) => {
 
 
 app.post('/logout', (req, res) => {
- 
+
   delete req.session.username;
   req.session.loggedIn = false;
   res.json({
@@ -243,7 +196,7 @@ app.get('/korisnik', async (req, res) => {
       });
       if (user) {
         res.status(200).json({
-          id: user.korisnikId,
+          id: user.id,
           ime: user.ime,
           prezime: user.prezime,
           username: user.username,
@@ -261,33 +214,36 @@ app.get('/korisnik', async (req, res) => {
   }
 });
 
-// app.post('/upit', (req, res) => {
-//   if (req.session.loggedIn) {
-//     const { nekretnina_id, tekst_upita } = req.body;
+app.post('/upit', async (req, res) => {
+  if (req.session.loggedIn) {
+    const { nekretnina_id, tekst_upita } = req.body;
 
-//     const nekretnine = require('./data/nekretnine.json');
+    const nekretnine = await Nekretnina.findAll();
 
-//     const nekretnina = nekretnine.find(nekretnina => nekretnina.id == nekretnina_id);
+    const nekretnina = nekretnine.find(nekretnina => nekretnina.id == nekretnina_id);
 
-//     const username = req.session.username;
+    const username = req.session.username;
 
-//     const korisnici = require('./data/korisnici.json');
+    const sviKorisnici = await Korisnik.findAll();
 
-//     const korisnikId = korisnici.find(korisnik => korisnik.username === username).id;
+    const korisnici = sviKorisnici.map(({ dataValues }) => dataValues);
 
-//     if (!nekretnina) {
-//       res.status(400).json({ greska: `Nekretnina sa id-em ${nekretnina_id} ne postoji` });
-//     } else {
-//       nekretnina.upiti.push({
-//         korisnik_id: korisnikId,
-//         tekst_upita,
-//       });
-//       res.status(200).json({ poruka: 'Upit je uspjesno dodan' });
-//     }
-//   } else {
-//     res.status(401).json({ greska: 'Neautorizovan pristup' });
-//   }
-// });
+    const korisnikId = korisnici.find(korisnik => korisnik.username === username).id;
+
+    if (!nekretnina) {
+      res.status(400).json({ greska: `Nekretnina sa id-em ${nekretnina_id} ne postoji` });
+    } else {
+      await Upit.create({
+        tekst_upita: tekst_upita,
+        korisnik_id: korisnikId,
+        nekretnina_id: nekretnina_id,
+      });
+      res.status(200).json({ poruka: 'Upit je uspjesno dodan' });
+    }
+  } else {
+    res.status(401).json({ greska: 'Neautorizovan pristup' });
+  }
+});
 
 // app.put('/korisnik', (req, res) => {
 //   if (req.session.loggedIn) {
@@ -327,24 +283,11 @@ app.get('/korisnik', async (req, res) => {
 //   }
 // });
 
-// app.get('/nekretnine', (req, res) => {
-//   let nekretnine = require('./data/nekretnine.json');
-
-//   res.status(200).json({ nekretnine });
-// });
-
 
 app.get('/nekretnine', async (req, res) => {
-   const sveNekretnine = await Nekretnina.findAll();
-  //res.status(200).send({ nekretnine: sveNekretnine });
-  let nekretnine = require('./data/nekretnine.json');
-
-  const plainNekretnine = sveNekretnine.map(({ dataValues }) => dataValues);
-
-  console.log(plainNekretnine);
-
-
-  res.status(200).send({ nekretnine: plainNekretnine });
+  const sveNekretnine = await Nekretnina.findAll();
+  const nekretnine = sveNekretnine.map(({ dataValues }) => dataValues);
+  res.status(200).send({ nekretnine });
 });
 
 

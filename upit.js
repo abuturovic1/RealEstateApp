@@ -12,20 +12,20 @@ const sequelize = new Sequelize(
 );
 module.exports = function (sequelize) {
     const Upit = sequelize.define("Upit", {
-        upitId: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
-        tekstUpita: {
+        tekst_upita: {
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        korisnikId: {
+        korisnik_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        id: {
+        nekretnina_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
         }
