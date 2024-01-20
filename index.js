@@ -20,13 +20,6 @@ const Korisnik = require("./korisnik.js")(sequelize);
 const Nekretnina = require("./nekretnina.js")(sequelize);
 const Upit = require("./upit.js")(sequelize);
 
-// Korisnik.hasMany(Nekretnina, {
-//   foreignKey: 'korisnikId',
-// });
-// Nekretnina.belongsTo(Korisnik, {
-//   foreignKey: 'korisnikId',
-// });
-
 Korisnik.hasMany(Upit, { //korisnik moze imati vise upita
   foreignKey: {
     name: "korisnik_id",
@@ -58,7 +51,7 @@ Upit.belongsTo(Nekretnina, { //upit pripada nekretnini
   }
 });
 sequelize.sync({ force: true }).then(async () => {
-   console.log('Table created successfully!');
+  console.log('Table created successfully!');
 
   try {
     const korisnik1 = await Korisnik.create({
@@ -88,7 +81,7 @@ sequelize.sync({ force: true }).then(async () => {
       datum_objave: '01.10.2023.',
       opis: 'Sociis natoque penatibus.',
     });
-     console.log('Inserted data for Nekretnina with id 1');
+    console.log('Inserted data for Nekretnina with id 1');
 
     const nekretnina2 = await Nekretnina.create({
       tip_nekretnine: 'Poslovni prostor',
@@ -135,6 +128,8 @@ app.use(
     saveUninitialized: 'true',
   })
 );
+
+const publicPath = path.join(__dirname, 'public');
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, 'public/html')));
@@ -245,44 +240,39 @@ app.post('/upit', async (req, res) => {
   }
 });
 
-// app.put('/korisnik', (req, res) => {
-//   if (req.session.loggedIn) {
-//     const { ime, prezime, username, password } = req.body;
-//     const korisnici = require('./data/korisnici.json');
+app.put('/korisnik', async (req, res) => {
+  if (req.session.loggedIn) {
+    const { ime, prezime, username, password } = req.body;
+    const korisnik = await Korisnik.findOne({
+      where: { username: req.session.username }
+    });
 
-//     const userIndex = korisnici.findIndex(user => user.username === req.session.username);
+    if (ime) {
+      korisnik.ime = ime;
+    }
+    if (prezime) {
+      korisnik.prezime = prezime;
+    }
+    if (username) {
+      korisnik.username = username;
+      req.session.username = username;
+    }
+    if (password) {
+      bcrypt.hash(password, saltRounds, (err, hash) => {
+        if (err) {
+          res.status(500).json({ greska: 'Greška prilikom heširanja passworda' });
+        } else {
+          korisnik.password = hash;
+        }
+      });
+    }
+      await korisnik.save();
+      res.status(200).json({ poruka: 'Podaci su uspješno ažurirani' });
 
-//     if (ime) {
-//       korisnici[userIndex].ime = ime;
-//     }
-//     if (prezime) {
-//       korisnici[userIndex].prezime = prezime;
-//     }
-//     if (username) {
-//       korisnici[userIndex].username = username;
-//     }
-//     if (password) {
-//       bcrypt.hash(password, saltRounds, (err, hash) => {
-//         if (err) {
-//           res.status(500).json({ greska: 'Greška prilikom heširanja passworda' });
-//         } else {
-//           korisnici[userIndex].password = hash;
-//         }
-//       });
-//     }
-
-//     fs.writeFile('./data/korisnici.json', JSON.stringify(korisnici, null, 2), err => {
-//       if (err) {
-//         res.status(500).json({ greska: 'Greška prilikom ažuriranja podataka korisnika' });
-//         return;
-//       }
-//       res.status(200).json({ poruka: 'Podaci su uspješno ažurirani' });
-//     });
-//   } else {
-//     res.status(401).json({ greska: 'Neautorizovan pristup' });
-//   }
-// });
-
+  } else {
+    res.status(401).json({ greska: 'Neautorizovan pristup' });
+  }
+});
 
 app.get('/nekretnine', async (req, res) => {
   const sveNekretnine = await Nekretnina.findAll();
@@ -290,32 +280,30 @@ app.get('/nekretnine', async (req, res) => {
   res.status(200).send({ nekretnine });
 });
 
+app.get('/isloggedin', function (req, res) {
+  if (req.session.loggedIn == true) {
+    res.send(req.session.loggedIn);
+  } else {
+    res.send(false);
+  }
+});
 
+app.post('/marketing/nekretnine', (req, res) => {
+  const { nizNekretnina } = req.body;
+  console.log(nizNekretnina);
+  res.status(200).send();
+});
 
-// app.get('/isloggedin', function (req, res) {
-//   if (req.session.loggedIn == true) {
-//     res.send(req.session.loggedIn);
-//   } else {
-//     res.send(false);
-//   }
-// });
+app.post('/marketing/nekretnina/:id', (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  res.status(200).send();
+});
 
-// app.post('/marketing/nekretnine', (req, res) => {
-//   const { nizNekretnina } = req.body;
-//   console.log(nizNekretnina);
-//   res.status(200).send();
-// });
-
-// app.post('/marketing/nekretnina/:id', (req, res) => {
-//   const { id } = req.params;
-//   console.log(id);
-//   res.status(200).send();
-// });
-
-// app.post('/marketing/osvjezi', (req, res) => {
-//   const { nizNekretnina } = req.body;
-//   res.status(200).json(nizNekretnina);
-// });
+app.post('/marketing/osvjezi', (req, res) => {
+  const { nizNekretnina } = req.body;
+  res.status(200).json(nizNekretnina);
+});
 
 app.get('/:page', (req, res) => {
   const page = req.params.page;
