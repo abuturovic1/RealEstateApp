@@ -1,0 +1,30 @@
+
+const nekretnine = (error, data) => {
+    if (error == null) {
+        const nekretninaData = JSON.parse(data);
+        const nekretnina = nekretninaData.nekretnina;
+
+        document.getElementById('osnovno').innerHTML = `
+        <p><strong>Naziv: </strong>${nekretnina.naziv}</p> <br>
+        <p><strong>Kvadratura: </strong>${nekretnina.kvadratura} m2</p><br>
+        <p><strong>Cijena: </strong>${nekretnina.cijena} KM</p><br>
+    `;
+
+        document.getElementById('detalji').innerHTML = `
+        <p><strong>Tip grijanja: </strong>${nekretnina.tip_grijanja}</p>
+        <p> <strong>Godina izgradnje: </strong>${nekretnina.godina_izgradnje}.</p>
+        <p><strong>Lokacija: </strong>${nekretnina.lokacija}</p>
+        <p><strong>Datum objave: </strong>${nekretnina.datum_objave}</p>
+        <div id="opis">
+            <p> <strong>Opis:</strong> ${nekretnina.opis}</p>
+        </div>
+    `;
+    }
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+
+const nekretninaId = urlParams.get('id') || 1;
+
+PoziviAjax.getNekretninaById(nekretninaId, nekretnine);
+

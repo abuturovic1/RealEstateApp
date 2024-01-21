@@ -306,13 +306,13 @@ app.get('/isloggedin', function (req, res) {
 app.post('/marketing/nekretnine', (req, res) => {
   const { nizNekretnina } = req.body;
   console.log(nizNekretnina);
-  res.status(200).send();
+  res.status(200).json();
 });
 
 app.post('/marketing/nekretnina/:id', (req, res) => {
   const { id } = req.params;
   console.log(id);
-  res.status(200).send();
+  res.status(200).json();
 });
 
 app.post('/marketing/osvjezi', (req, res) => {

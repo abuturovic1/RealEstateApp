@@ -99,6 +99,18 @@ const PoziviAjax = (() => {
 
     ajax.send();
   }
+  
+  function impl_getNekretninaById(id, fnCallback) {
+    var ajax = new XMLHttpRequest();
+    ajax.onreadystatechange = function () {
+      if (ajax.readyState == 4) {
+        fnCallback(getError(ajax.status), ajax.responseText);
+      }
+    };
+
+    ajax.open('GET', '/nekretnina/' + id, true);
+    ajax.send();
+  }
 
   function impl_isLoggedin(fnCallback) {
     var ajax = new XMLHttpRequest();
@@ -119,5 +131,6 @@ const PoziviAjax = (() => {
     postUpit: impl_postUpit,
     getNekretnine: impl_getNekretnine,
     getLoggedIn: impl_isLoggedin,
+    getNekretninaById: impl_getNekretninaById,
   };
 })();
