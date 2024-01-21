@@ -53,7 +53,7 @@ body {
     background-color: #fdf1d3;
 }
 
-ul {
+#upiti-list, ul {
     list-style-type: none;
     margin-left: 10px;
 }

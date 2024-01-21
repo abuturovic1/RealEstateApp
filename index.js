@@ -287,13 +287,50 @@ app.get('/nekretnina/:id', async (req, res) => {
 
   const nekretnina = nekretnine.find(nekretnina => nekretnina.id == id);
 
+  // const sviUpiti = await Upit.findAll();
+
+  // const upiti = sviUpiti.filter(upiti => upiti.nekretnina_id == id);
+
+  // const noviUpiti = upiti.map(({ dataValues }) => dataValues);
+
+  // const sviKorisnici = await Korisnik.findAll();
+
+  // const korisnici = sviKorisnici.map(({ dataValues }) => dataValues);
+
+  // const korisniciId = korisnici.map(korisnik => korisnik.id);
+
+
+  // const filteredUpiti = noviUpiti.filter(upit => korisniciId.includes(upit.korisnik_id));
+  // const usernames = filteredUpiti.map(upit => upit.username);
+
+  // console.log(usernames);
+
+  const upiti = await Upit.findAll({
+    where: {
+      nekretnina_id: id
+    },
+    include: [{
+      model: Korisnik,
+      attributes: ['username'],
+      where: {
+        id: Sequelize.col('Upit.korisnik_id')
+      }
+    }]
+  });
+
+  const noviUpiti = upiti.map(({ dataValues }) => dataValues);
+  const usernames = noviUpiti.map(upit => upit.Korisnik.username);
+
+  console.log(usernames);
+
+  
   if (!nekretnina) {
     return res.status(400).json({ greska: `Nekretnina sa id-em ${id} ne postoji` });
   }
 
-  res.status(200).json({ nekretnina });
+  res.status(200).json({ nekretnina, noviUpiti, usernames });
 
-})
+});
 
 app.get('/isloggedin', function (req, res) {
   if (req.session.loggedIn == true) {

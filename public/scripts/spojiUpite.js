@@ -1,5 +1,6 @@
 const isLogin = (error, data) => {
     if (data === "false") {
+        console.log("Tu");
         const div = document.getElementById('novi-upiti');
         div.style.display = 'none';
     }
@@ -27,7 +28,6 @@ const postUpit = (error, data) => {
         PoziviAjax.getKorisnik(korisnik);
     }
 }
-
 
 PoziviAjax.getLoggedIn(isLogin);
 
