@@ -48,11 +48,6 @@ module.exports = function (sequelize) {
     opis: {
       type: DataTypes.STRING,
     }
-    // ,
-    // korisnikId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    // }
   });
 
   return Nekretnina;

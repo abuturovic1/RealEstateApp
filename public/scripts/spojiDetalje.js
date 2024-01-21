@@ -5,7 +5,6 @@ const nekretnine = (error, data) => {
         const upiti = nekretninaData.noviUpiti;
         const usernames = nekretninaData.usernames;
 
-        console.log(nekretninaData);
 
         document.getElementById('osnovno').innerHTML = `
         <p><strong>Naziv: </strong>${nekretnina.naziv}</p> <br>
