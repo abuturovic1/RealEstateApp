@@ -25,6 +25,10 @@
     width: 800px;
 }
 
+#upiti #novi-upiti {
+    margin-left: 50px;
+}
+
 h3 {
     margin-left: 50px;
 
@@ -52,4 +56,17 @@ body {
 ul {
     list-style-type: none;
     margin-left: 10px;
+}
+
+#novi-upiti input[type="submit"] {
+    background-color: lightcoral;
+    color: white;
+    padding: 3px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#novi-upiti input[type="submit"]:hover {
+    background-color: darkred;
 }
