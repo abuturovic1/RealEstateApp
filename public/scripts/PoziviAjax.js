@@ -11,7 +11,7 @@ const PoziviAjax = (() => {
     var ajax = new XMLHttpRequest();
     ajax.onreadystatechange = function () {
       if (ajax.readyState === 4) {
-        fn(getError(ajax.status), ajax.responseText);
+        fnCallback(getError(ajax.status), ajax.responseText);
       }
     };
     ajax.open('GET', '/korisnik', true);
